@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    width:100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+body {
+   background: url('../images/background.jpg') no-repeat center center fixed;
+   background-size: cover;
+   color:white;
+   text-align:center;
+   font-family: 'Dancing Script', cursive; 
+   font-family: 'Playball', cursive;
+    
+}
+
+#game-container {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+}
+  
+  #game-container h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    -webkit-text-stroke: 0.1px rgb(179, 54, 102); /* Stroke color and width */
+    background: -webkit-linear-gradient(rgb(255, 255, 255), rgb(177, 82, 158)); /* Background gradient */
+    -webkit-background-clip: text; /* Use text as the clipping area */
+    -webkit-text-fill-color: transparent; /* Transparent text fill */
+  }
+
+  #board{
+    height:450px;
+    width:450px;
+    background-color: rgba(90, 132, 189, 0.5); 
+    border: 2px solid slategray;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+#board img{
+  width:50px;
+  height:50px;
+}

@@ -1,4 +1,4 @@
-var candies = ["Blue", "Orange", "Red", "Yellow", "Green"];
+var candies = ["Blue", "Orange", "Red", "Yellow", "Green", "Purple"];
 var board = [];
 var rows = 9;
 var columns = 9;
@@ -9,6 +9,7 @@ var nextTile;
 window.onload = function () {
   console.log("onload");
   startGame();
+  // playMusicLoop();
   window.setInterval(function () {
     crushCandy();
     slideCandy();
@@ -20,6 +21,16 @@ window.onload = function () {
 function randomCandy() {
   console.log("at random candy generator");
   return candies[Math.floor(Math.random() * candies.length)];
+}
+function randomHorizontal(){
+  console.log("randomhorizontal");
+  let candiesHorizontal = ["Green-Striped-Horizontal", "Blue-Striped-Horizontal", "Purple-Striped-Horizontal", "Red-Striped-Horizontal", "Orange-Striped-Horizontal"];
+  return candiesHorizontal[Math.floor(Math.random()*candiesHorizontal.length)];
+}
+function randomVertical(){
+  console.log("randomhorizontal");
+  let candiesVertical = ["Green-Striped-Vertical", "Blue-Striped-Vertical", "Purple-Striped-Vertical", "Red-Striped-Vertical", "Orange-Striped-Vertical"];
+  return candiesVertical[Math.floor(Math.random()*candiesVertical.length)];
 }
 
 function startGame() {
@@ -101,13 +112,91 @@ function dragEnd() {
     }
   }
 }
-
 function crushCandy() {
+  crushFour();
   crushThree();
   document.getElementById("score").innerText = score;
 }
+function crushFour() {
+  // Checking each row
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns - 3; c++) {
+      let isRowOfSameColor = true;
+      let color;
 
-function crushThree() {
+      for (let i = 0; i < 4; i++) {
+        let candy = board[r][c + i];
+      
+        var candyColor = candy.src.split('/').pop().split('-')[0];
+        candyColor = candyColor.slice(0, -4); // Remove the file extension
+      
+        if (i === 0) {
+          color = candyColor;
+        } else if (candyColor !== color) {
+          isRowOfSameColor = false;
+          break;
+        }
+      }
+      
+      if (isRowOfSameColor && candyColor.includes(color)) {
+        // Perform actions on the candies in the row
+        for (let i = 0; i < 4; i++) {
+          let candy = board[r][c + i];
+
+          if (!candy.src.includes("blank")) {
+            if (i < 3) {
+              candy.src = "../images/blank.png";
+            } else {
+              candy.src = `../images/${color}-Striped-Horizontal.png`;
+            }
+            score += 40;
+          }
+        }
+      }
+    }
+  }
+
+  // Checking each column
+  for (let c = 0; c < columns; c++) {
+    for (let r = 0; r < rows - 3; r++) {
+      let isColumnOfSameColor = true;
+      let color;
+
+      for (let i = 0; i < 4; i++) {
+        let candy = board[r + i][c];
+
+        var candyColor = candy.src.split('/').pop().split('-')[0];
+        candyColor = candyColor.slice(0, -4); // Remove the file extension
+
+        if (i === 0) {
+          color = candyColor;
+        } else if (candyColor !== color) {
+          isColumnOfSameColor = false;
+          break;
+        }
+      }
+
+      if (isColumnOfSameColor && candyColor.includes(color)){
+        // Perform actions on the candies in the row
+        for (let i = 0; i < 4; i++) {
+          let candy = board[r + i][c];
+
+          if (!candy.src.includes("blank")) {
+            if (i < 3) {
+              candy.src = "../images/blank.png";
+            } else {
+              candy.src = `../images/${color}-Striped-Vertical.png`;
+            }
+            score += 40;
+          }
+        }
+      }
+      }
+    }
+  }
+
+
+function crushThree() { //crushes a row or column of 3 candies
   //checking each row
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns - 2; c++) {
@@ -119,6 +208,7 @@ function crushThree() {
         candy2.src == candy3.src &&
         !candy1.src.includes("blank")
       ) {
+        console.log("three crushed row")
         candy1.src = "../images/blank.png";
         candy2.src = "../images/blank.png";
         candy3.src = "../images/blank.png";
@@ -137,6 +227,7 @@ function crushThree() {
         candy2.src == candy3.src &&
         !candy1.src.includes("blank")
       ) {
+        console.log("three crushed column")
         candy1.src = "../images/blank.png";
         candy2.src = "../images/blank.png";
         candy3.src = "../images/blank.png";
@@ -157,6 +248,8 @@ function checkValid() {
         candy2.src == candy3.src &&
         !candy1.src.includes("blank")
       ) {
+        const swapSound= new Audio('../audio/swap.wav');
+        swapSound.play();
         return true;
       }
     }
@@ -172,6 +265,8 @@ function checkValid() {
         candy2.src == candy3.src &&
         !candy1.src.includes("blank")
       ) {
+        const swapSound= new Audio('../audio/swap.wav');
+        swapSound.play();
         return true;
       }
     }
@@ -187,10 +282,12 @@ function slideCandy(){
                 board[ind][c].src = board[r][c].src;
                 ind -= 1;
             }
-        }
+        } 
 
         for(let r = ind;r >=0; r--){
-            board[r][c].src="../images/blank.png";
+          const dropSound= new Audio('../audio/drop.wav');
+          dropSound.play();
+          board[r][c].src="../images/blank.png";
         }
     }
 }
@@ -201,3 +298,17 @@ function generateCandy(){
         }
     }
 }
+
+function playMusicLoop() {
+  // Create an Audio object with the path to your music file
+  const audio = new Audio('../audio/Theme-music.mp3');
+
+  // Set the loop property to true to play the music in a loop
+  audio.loop = true;
+
+  // Play the music
+  audio.play();
+}
+
+
+

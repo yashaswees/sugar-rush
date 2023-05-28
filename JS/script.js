@@ -22,17 +22,6 @@ function randomCandy() {
   console.log("at random candy generator");
   return candies[Math.floor(Math.random() * candies.length)];
 }
-function randomHorizontal(){
-  console.log("randomhorizontal");
-  let candiesHorizontal = ["Green-Striped-Horizontal", "Blue-Striped-Horizontal", "Purple-Striped-Horizontal", "Red-Striped-Horizontal", "Orange-Striped-Horizontal"];
-  return candiesHorizontal[Math.floor(Math.random()*candiesHorizontal.length)];
-}
-function randomVertical(){
-  console.log("randomhorizontal");
-  let candiesVertical = ["Green-Striped-Vertical", "Blue-Striped-Vertical", "Purple-Striped-Vertical", "Red-Striped-Vertical", "Orange-Striped-Vertical"];
-  return candiesVertical[Math.floor(Math.random()*candiesVertical.length)];
-}
-
 function startGame() {
   for (let r = 0; r < rows; r++) {
     let row = [];

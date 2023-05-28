@@ -147,7 +147,7 @@ function crushFour() {
             if (i < 3) {
               candy.src = "../images/blank.png";
             } else {
-              candy.src = `../images/${color}-Striped-Horizontal.png`;
+              candy.src = `./images/${color}-Striped-Horizontal.png`;
             }
             score += 40;
           }
@@ -185,7 +185,7 @@ function crushFour() {
             if (i < 3) {
               candy.src = "../images/blank.png";
             } else {
-              candy.src = `../images/${color}-Striped-Vertical.png`;
+              candy.src = `./images/${color}-Striped-Vertical.png`;
             }
             score += 40;
           }

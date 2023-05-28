@@ -66,8 +66,12 @@ function dragDrop() {
 
 function dragEnd() {
     if (currTile.src.includes("blank") || nextTile.src.includes("blank")){ // cannot swap with blank 
+      console.log('at drop');
+    
         return;
     }
+    const dropSound= new Audio('../audio/drop.wav');
+    dropSound.play();
 
   console.log("at dragEnd");
   //check for adjacent candies
@@ -94,6 +98,8 @@ function dragEnd() {
     nextTile.src = currImg;
     let validMove = checkValid();
     if(!validMove){ // makes sure that only those moves are valid that make a combination
+      // const swapSound= new Audio('../audio/swap.wav');
+      // swapSound.play();
         let currImg = currTile.src;
         let nextImg = nextTile.src;
         currTile.src = nextImg;
@@ -233,35 +239,48 @@ function checkValid() {
       let candy2 = board[r][c + 1];
       let candy3 = board[r][c + 2];
       if (
-        candy1.src == candy2.src &&
-        candy2.src == candy3.src &&
-        !candy1.src.includes("blank")
+        (
+          candy1.src == candy2.src &&
+          candy2.src == candy3.src &&
+          !candy1.src.includes("blank")
+        ) ||
+        (
+          candy1.src.includes("Striped-Horizontal") &&
+          candy2.src.includes("Striped-Horizontal") &&
+          candy3.src.includes("Striped-Horizontal")
+        )
       ) {
-        const swapSound= new Audio('../audio/swap.wav');
-        swapSound.play();
         return true;
       }
     }
   }
-  //checking each column
+  
+  // Checking each column
   for (let c = 0; c < columns; c++) {
     for (let r = 0; r < rows - 2; r++) {
       let candy1 = board[r][c];
       let candy2 = board[r + 1][c];
       let candy3 = board[r + 2][c];
       if (
-        candy1.src == candy2.src &&
-        candy2.src == candy3.src &&
-        !candy1.src.includes("blank")
+        (
+          candy1.src == candy2.src &&
+          candy2.src == candy3.src &&
+          !candy1.src.includes("blank")
+        ) ||
+        (
+          candy1.src.includes("Striped-Vertical") &&
+          candy2.src.includes("Striped-Vertical") &&
+          candy3.src.includes("Striped-Vertical")
+        )
       ) {
-        const swapSound= new Audio('../audio/swap.wav');
-        swapSound.play();
         return true;
       }
     }
   }
+  
   return false;
 }
+
 
 function slideCandy(){
     for (let c = 0; c < columns; c++){
@@ -272,10 +291,7 @@ function slideCandy(){
                 ind -= 1;
             }
         } 
-
-        for(let r = ind;r >=0; r--){
-          const dropSound= new Audio('../audio/drop.wav');
-          dropSound.play();
+        for(let r = ind;r >=0; r--){ 
           board[r][c].src="../images/blank.png";
         }
     }

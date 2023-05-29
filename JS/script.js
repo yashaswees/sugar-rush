@@ -65,13 +65,14 @@ function dragDrop() {
 }
 
 function dragEnd() {
-    if (currTile.src.includes("blank") || nextTile.src.includes("blank")){ // cannot swap with blank 
-      console.log('at drop');
-    
-        return;
-    }
-    const dropSound= new Audio('../audio/drop.wav');
-    dropSound.play();
+  if (currTile.src.includes("blank") || nextTile.src.includes("blank")) {
+    // cannot swap with blank
+    console.log("at drop");
+
+    return;
+  }
+  const dropSound = new Audio("../audio/drop.wav");
+  dropSound.play();
 
   console.log("at dragEnd");
   //check for adjacent candies
@@ -97,21 +98,21 @@ function dragEnd() {
     currTile.src = nextImg;
     nextTile.src = currImg;
     let validMove = checkValid();
-    if(!validMove){ // makes sure that only those moves are valid that make a combination
+    if (!validMove) {
+      // makes sure that only those moves are valid that make a combination
       // const swapSound= new Audio('../audio/swap.wav');
       // swapSound.play();
-        let currImg = currTile.src;
-        let nextImg = nextTile.src;
-        currTile.src = nextImg;
-        nextTile.src = currImg;
+      let currImg = currTile.src;
+      let nextImg = nextTile.src;
+      currTile.src = nextImg;
+      nextTile.src = currImg;
     }
   }
 }
 
-
 function playMusicLoop() {
   // Create an Audio object with the path to your music file
-  const audio = new Audio('../audio/Theme-music.mp3');
+  const audio = new Audio("../audio/Theme-music.mp3");
 
   // Set the loop property to true to play the music in a loop
   audio.loop = true;
@@ -119,6 +120,3 @@ function playMusicLoop() {
   // Play the music
   audio.play();
 }
-
-
-

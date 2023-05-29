@@ -159,10 +159,13 @@ function crushFour() {
 
       for (let i = 0; i < 4; i++) {
         let candy = board[r + i][c];
-
+        
         var candyColor = candy.src.split('/').pop().split('-')[0];
-        candyColor = candyColor.slice(0, -4); // Remove the file extension
-
+        if (candyColor.includes(".png")){
+          candyColor = candyColor.slice(0, -4); // Remove the file extension
+        }
+        
+        // console.log(candyColor)
         if (i === 0) {
           color = candyColor;
         } else if (candyColor !== color) {
@@ -196,17 +199,35 @@ function crushThree() { //crushes a row or column of 3 candies
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns - 2; c++) {
       let candy1 = board[r][c];
+      var candyColor1 = candy1.src.split('/').pop().split('-')[0];
+      if (candyColor1.includes(".png")){
+        candyColor1 = candyColor1.slice(0, -4); // Remove the file extension
+      }
       let candy2 = board[r][c + 1];
+      var candyColor2 = candy2.src.split('/').pop().split('-')[0];
+      if (candyColor2.includes(".png")){
+        candyColor2 = candyColor2.slice(0, -4); // Remove the file extension
+      }
       let candy3 = board[r][c + 2];
+      var candyColor3 = candy3.src.split('/').pop().split('-')[0];
+      if (candyColor3.includes(".png")){
+        candyColor3 = candyColor3.slice(0, -4); // Remove the file extension
+      }
       if (
-        candy1.src == candy2.src &&
-        candy2.src == candy3.src &&
+        candyColor1 == candyColor2 &&
+        candyColor2 == candyColor3 &&
         !candy1.src.includes("blank")
       ) {
         console.log("three crushed row")
         candy1.src = "../images/blank.png";
         candy2.src = "../images/blank.png";
         candy3.src = "../images/blank.png";
+        
+        for (let i = 0; i < columns; i++) {
+          console.log("horizontal powerup");
+          board[r][i].src = "../images/blank.png";
+          board[r][i].setAttribute("src", "../images/blank.png");
+        }
         score +=30;
       }
     }
@@ -215,11 +236,23 @@ function crushThree() { //crushes a row or column of 3 candies
   for (let c = 0; c < columns; c++) {
     for (let r = 0; r < rows - 2; r++) {
       let candy1 = board[r][c];
+      var candyColor1 = candy1.src.split('/').pop().split('-')[0];
+      if (candyColor1.includes(".png")){
+        candyColor1 = candyColor1.slice(0, -4); // Remove the file extension
+      }
       let candy2 = board[r + 1][c];
+      var candyColor2 = candy2.src.split('/').pop().split('-')[0];
+      if (candyColor2.includes(".png")){
+        candyColor2 = candyColor2.slice(0, -4); // Remove the file extension
+      }
       let candy3 = board[r + 2][c];
+      var candyColor3 = candy3.src.split('/').pop().split('-')[0];
+      if (candyColor3.includes(".png")){
+        candyColor3 = candyColor3.slice(0, -4); // Remove the file extension
+      }
       if (
-        candy1.src == candy2.src &&
-        candy2.src == candy3.src &&
+        candyColor1 == candyColor2 &&
+        candyColor2 == candyColor3 &&
         !candy1.src.includes("blank")
       ) {
         console.log("three crushed column")
@@ -233,53 +266,65 @@ function crushThree() { //crushes a row or column of 3 candies
 }
 
 function checkValid() {
+  //check rows
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns - 2; c++) {
       let candy1 = board[r][c];
-      let candy2 = board[r][c + 1];
-      let candy3 = board[r][c + 2];
-      if (
-        (
-          candy1.src == candy2.src &&
-          candy2.src == candy3.src &&
-          !candy1.src.includes("blank")
-        ) ||
-        (
-          candy1.src.includes("Striped-Horizontal") &&
-          candy2.src.includes("Striped-Horizontal") &&
-          candy3.src.includes("Striped-Horizontal")
-        )
-      ) {
-        return true;
+      var candyColor1 = candy1.src.split('/').pop().split('-')[0];
+      if (candyColor1.includes(".png")){
+        candyColor1 = candyColor1.slice(0, -4); // Remove the file extension
       }
-    }
+      let candy2 = board[r][c + 1];
+      var candyColor2 = candy2.src.split('/').pop().split('-')[0];
+      if (candyColor2.includes(".png")){
+        candyColor2 = candyColor2.slice(0, -4); // Remove the file extension
+      }
+      let candy3 = board[r][c + 2];
+      var candyColor3 = candy3.src.split('/').pop().split('-')[0];
+      if (candyColor3.includes(".png")){
+        candyColor3 = candyColor3.slice(0, -4); // Remove the file extension
+      }
+      if (
+        candyColor1 == candyColor2 &&
+        candyColor2 == candyColor3 &&
+        !candy1.src.includes("blank")
+      ) {
+              return true;
+          }
+      }
   }
-  
-  // Checking each column
+
+  //check columns
   for (let c = 0; c < columns; c++) {
     for (let r = 0; r < rows - 2; r++) {
       let candy1 = board[r][c];
-      let candy2 = board[r + 1][c];
-      let candy3 = board[r + 2][c];
-      if (
-        (
-          candy1.src == candy2.src &&
-          candy2.src == candy3.src &&
-          !candy1.src.includes("blank")
-        ) ||
-        (
-          candy1.src.includes("Striped-Vertical") &&
-          candy2.src.includes("Striped-Vertical") &&
-          candy3.src.includes("Striped-Vertical")
-        )
-      ) {
-        return true;
+      var candyColor1 = candy1.src.split('/').pop().split('-')[0];
+      if (candyColor1.includes(".png")){
+        candyColor1 = candyColor1.slice(0, -4); // Remove the file extension
       }
-    }
+      let candy2 = board[r + 1][c];
+      var candyColor2 = candy2.src.split('/').pop().split('-')[0];
+      if (candyColor2.includes(".png")){
+        candyColor2 = candyColor2.slice(0, -4); // Remove the file extension
+      }
+      let candy3 = board[r + 2][c];
+      var candyColor3 = candy3.src.split('/').pop().split('-')[0];
+      if (candyColor3.includes(".png")){
+        candyColor3 = candyColor3.slice(0, -4); // Remove the file extension
+      }
+      if (
+        candyColor1 == candyColor2 &&
+        candyColor2 == candyColor3 &&
+        !candy1.src.includes("blank")
+      ) {
+              return true;
+          }
+      }
   }
-  
+  console.log("invalid move");
   return false;
 }
+
 
 
 function slideCandy(){

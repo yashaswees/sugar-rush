@@ -35,7 +35,7 @@ function crushFour() {
               console.log(candy.src);
               candy.src = "../images/blank.png";
             } else {
-              candy.src = `../images/${color}-Striped-Horizontal.png`;
+              candy.src = `../sugar-rush/images/${color}-Striped-Horizontal.png`;
               console.log(candy.src);
             }
             score += 40;

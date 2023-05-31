@@ -7,21 +7,25 @@ var currTile;
 var nextTile;
 
 window.onload = function () {
+  showFrontPage();
+};
+
+function start() {
+  document.getElementById("frontPage").style.display = "none";
+  let container = document.querySelector(".container");
+  container.style.display = "block";
+  console.log("at start");
+  playMusicLoop();
+  // Start the game loop
   startGame();
-  // playMusicLoop();
   window.setInterval(function () {
     crushCandy();
     slideCandy();
     generateCandy();
   }, 100);
-};
-
-// function that generates random candies in the game
-function randomCandy() {
-  return candies[Math.floor(Math.random() * candies.length)];
 }
-function startGame() {
 
+function startGame() {
   for (let r = 0; r < rows; r++) {
     let row = [];
     for (let c = 0; c < columns; c++) {
@@ -41,6 +45,10 @@ function startGame() {
     }
     board.push(row);
   }
+}
+// function that generates random candies in the game
+function randomCandy() {
+  return candies[Math.floor(Math.random() * candies.length)];
 }
 
 function dragStart() {

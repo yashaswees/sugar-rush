@@ -7,26 +7,24 @@ var currTile;
 var nextTile;
 
 window.onload = function () {
-  console.log("onload");
   startGame();
   // playMusicLoop();
   window.setInterval(function () {
     crushCandy();
     slideCandy();
     generateCandy();
-  }, 100);
+  }, 300);
 };
 
 // function that generates random candies in the game
 function randomCandy() {
-  console.log("at random candy generator");
   return candies[Math.floor(Math.random() * candies.length)];
 }
 function startGame() {
+
   for (let r = 0; r < rows; r++) {
     let row = [];
     for (let c = 0; c < columns; c++) {
-      console.log("at startGame");
       let tile = document.createElement("img");
       tile.id = r.toString() + "-" + c.toString(); //makes each candy a matrix component
       tile.src = "./images/" + randomCandy() + ".png";
@@ -38,7 +36,6 @@ function startGame() {
       tile.addEventListener("dragleave", dragLeave); // leave another candy
       tile.addEventListener("drop", dragDrop); // dropping a candy over another candy
       tile.addEventListener("dragend", dragEnd); // letting go of previous candy
-
       document.getElementById("board").append(tile);
       row.push(tile);
     }

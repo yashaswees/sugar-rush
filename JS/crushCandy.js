@@ -22,7 +22,8 @@ function crushFive() {
         candy1.src === candy2.src &&
         candy2.src === candy3.src &&
         candy3.src === candy4.src &&
-        candy4.src === candy5.src
+        candy4.src === candy5.src &&
+        !candy1.src.includes("blank")
       ) {
         console.log("at crush Five");
         candy1.src = "../images/blank.png";

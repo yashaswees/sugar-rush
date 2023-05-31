@@ -13,7 +13,7 @@ window.onload = function () {
     crushCandy();
     slideCandy();
     generateCandy();
-  }, 300);
+  }, 100);
 };
 
 // function that generates random candies in the game

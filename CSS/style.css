@@ -72,7 +72,7 @@ body {
 .left-container h2:hover{
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
 }
-.sweetImg{
+#sweetImg{
   position: absolute;
    width:400px;
    height:170px;
@@ -89,3 +89,22 @@ body {
     transform: translateY(100px);
   }
 }
+
+/* @keyframes swooshAnimation {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10px) rotate(0);
+    opacity: 0;
+  }
+}
+
+.candy {
+  animation-name: swooshAnimation;
+  animation-duration: 1s; 
+  animation-timing-function: ease-in-out;
+   animation-fill-mode: forwards;
+} */
+

@@ -41,23 +41,26 @@ function crushThreeRow() {
           console.log("three crushed row");
           candy1.src = "../images/blank.png";
           candy2.src = "../images/blank.png";
-          candy3.src = "../images/blank.png";
+          candy3.src = "../images/blank.png"; 
+          var drop= new Audio("../audio/drop.wav");
+          console.log("playing drop at row");
+          drop.play();
           if (striped == true) {
             for (let i = 0; i < columns; i++) {
               console.log(" powerup crusing whole row");
               board[r][i].src = "../images/blank.png";
               board[r][i].setAttribute("src", "../images/blank.png");
+            
               let sweetImg = document.getElementById("sweetImg");
               setTimeout(function () {
                 sweetImg.style.display = "block";
                 setTimeout(function () {
                   sweetImg.style.display = "none";
-                }, 1500); // Display the sweetImg for 2000 milliseconds (2 seconds)
-              }, 500); // Delay the initial display of the sweetImg by 1500 milliseconds (1.5 seconds)
+                }, 1000); // Display the sweetImg for 1 second 
+              }, 100); // Delay the initial display of the sweetImg by 1500 milliseconds (1.5 seconds)
               
             }
-            var sweet = new Audio("../audio/sweet.wav");
-              console.log("playing sweet");
+            fairyDust.play();
               sweet.play();
               score += 60;
           }
@@ -106,11 +109,14 @@ function crushThreeRow() {
           candy1.src = "../images/blank.png";
           candy2.src = "../images/blank.png";
           candy3.src = "../images/blank.png";
+          console.log("playing drop at column");
+          drop.play();
           if (striped == true) {
             for (let i = 0; i < rows; i++) {
               console.log("powerup crushing whole column");
               board[i][c].src = "../images/blank.png";
             }
+            fairyDust.play();
             var divine = new Audio("../audio/divine.wav");
             divine.play();
             score += 60;

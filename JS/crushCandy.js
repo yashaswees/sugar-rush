@@ -1,10 +1,60 @@
 function crushCandy() {
+  crushTwo();
   crushFive();
   crushFour();
   crushThree();
   document.getElementById("score").innerText = score;
 }
-
+function crushTwo() {
+  // when two striped combination is made in row
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns - 1; c++) {
+      let candy1 = board[r][c];
+      let candy2 = board[r][c + 1];
+      if (candy1.src.includes("Striped") && candy2.src.includes("Striped")) {
+        for (let i = 0; i < columns; i++) {
+          console.log(" powerup crusing 2 whole rows");
+          board[i][c].src = "../images/blank.png";
+          board[i][c + 1].src = "../images/blank.png";
+          let tastyImg = document.querySelector(".delicious");
+          setTimeout(function () {
+            tastyImg.style.display = "block";
+            setTimeout(function () {
+              tastyImg.style.display = "none";
+            }, 1000); // Display for 1 second
+          }, 100);
+        }
+        delicious.play();
+        score += 180;
+      }
+    }
+  }
+  // when two striped combination is made in column
+  for (let c = 0; c < columns; c++) {
+    for (let r = 0; r < rows - 1; r++) {
+      let candy1 = board[r][c];
+      let candy2 = board[r + 1][c];
+      if (candy1.src.includes("Striped") && candy2.src.includes("Striped")) {
+        for (let i = 0; i < rows; i++) {
+          console.log("powerup crushing whole 2 columns");
+          board[r][i].src = "../images/blank.png";
+          board[r + 1][i].src = "../images/blank.png";
+          console.log("striped combination column");
+          let sweetImg = document.getElementById("sweetImg");
+          setTimeout(function () {
+            sweetImg.style.display = "block";
+            setTimeout(function () {
+              sweetImg.style.display = "none";
+            }, 1000); // Display for 1 second
+          }, 100);
+        }
+        console.log("playing sweet at 2 column combinaiton");
+        sweet.play();
+        score += 180;
+      }
+    }
+  }
+}
 
 function crushFive() {
   var sounds = ["delicious", "tasty"];
@@ -99,6 +149,7 @@ function crushFour() {
             score += 40;
           }
         }
+        drop.play();
       }
     }
   }
@@ -139,9 +190,8 @@ function crushFour() {
             score += 40;
           }
         }
+        drop.play();
       }
     }
   }
 }
-
-

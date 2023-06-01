@@ -7,5 +7,5 @@ function showFrontPage() {
   document.getElementById("frontPage").appendChild(frontPageImage);
 
   let startButton = document.getElementById("startButton");
-  startButton.addEventListener("click", start, playMusicLoop);
+  startButton.addEventListener("click", start);
 }

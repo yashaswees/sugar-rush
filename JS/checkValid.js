@@ -21,9 +21,11 @@ function checkValid() {
         candyColor1 == candyColor2 &&
         candyColor2 == candyColor3 &&
         !candy1.src.includes("blank")
-      ) {
-        return true;
+      ) { 
+
         moves--;
+        return true;
+       
       }
     }
   }
@@ -50,10 +52,13 @@ function checkValid() {
         candyColor2 == candyColor3 &&
         !candy1.src.includes("blank")
       ) {
+        swap.play();
         return true;
       }
     }
   }
   console.log("invalid move");
+  let invalid= new Audio("../audio/invalid.mp3");
+  invalid.play();
   return true;
 }

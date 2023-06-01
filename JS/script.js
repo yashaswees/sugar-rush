@@ -5,6 +5,10 @@ var columns = 9;
 var score = 0;
 var currTile;
 var nextTile;
+ var drop= new Audio("../audio/drop.wav");
+ var delicious = new Audio("../audio/delicious.wav");
+ var fairyDust = new Audio ("../audio/fairy-dust.mp3");
+ var sweet = new Audio("../audio/sweet.wav");
 
 window.onload = function () {
   showFrontPage();
@@ -15,14 +19,14 @@ function start() {
   let container = document.querySelector(".container");
   container.style.display = "block";
   console.log("at start");
-  playMusicLoop();
+  // playMusicLoop(); 
   // Start the game loop
   startGame();
   window.setInterval(function () {
     crushCandy();
-    slideCandy();
+    setTimeout(function(){slideCandy()}, 300)
     generateCandy();
-  }, 100);
+  }, 200);
 }
 
 function startGame() {
@@ -76,9 +80,6 @@ function dragEnd() {
 
     return;
   }
-  const dropSound = new Audio("../audio/drop.wav");
-  dropSound.play();
-
   console.log("at dragEnd");
   //check for adjacent candies
   let currCoords = currTile.id.split("-");

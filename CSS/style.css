@@ -52,7 +52,13 @@ body {
   margin: 10px auto;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 }
+.table-image {
+  width: 100%;
+  height: 100%;
+}
+
 #board img{
   width:50px;
   height:50px;
@@ -78,8 +84,9 @@ body {
    width:400px;
    height:170px;
    display: none;
-   animation: slideBottomUp 2s ;
+   animation: slideBottomUp 1s ;
    margin-left:250px;
+   margin-top: 100px;
 }
 #frontPage{
   width: 100vw;
@@ -107,30 +114,22 @@ body {
   color:darkmagenta;
   background-color: rgba(245, 67, 204, 0.571);
 }
+.textImg{
+  display:none;
+  position: absolute;
+  width:400px;
+  height:170px;
+  animation: slideBottomUp 1s ;
+  margin-left:250px;
+  margin-top: 100px;
+}
 @keyframes slideBottomUp {
   from{
-    transform: translateY(300px);
-  }
-  to {
     transform: translateY(100px);
   }
-}
-
-/* @keyframes swooshAnimation {
-  0% {
-    transform: translateY(0) rotate(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(10px) rotate(0);
-    opacity: 0;
+  to {
+    transform: translateY(50px);
   }
 }
 
-.candy {
-  animation-name: swooshAnimation;
-  animation-duration: 1s; 
-  animation-timing-function: ease-in-out;
-   animation-fill-mode: forwards;
-} */
 

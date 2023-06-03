@@ -1,14 +1,18 @@
-var candies = ["Blue", "Orange", "Red", "Yellow", "Green", "Purple"];
-var board = [];
-var rows = 9;
-var columns = 9;
-var score = 0;
-var currTile;
-var nextTile;
- var drop= new Audio("../audio/drop.wav");
- var delicious = new Audio("../audio/delicious.wav");
- var fairyDust = new Audio ("../audio/fairy-dust.mp3");
- var sweet = new Audio("../audio/sweet.wav");
+let candies = ["Blue", "Orange", "Red", "Yellow", "Green", "Purple"];
+let board = [];
+let rows = 9;
+let columns = 9;
+let score = 0;
+let moves = 20;
+let currTile;
+let nextTile;
+ let drop= new Audio("../audio/drop.wav");
+ let delicious = new Audio("../audio/delicious.wav");
+ let fairyDust = new Audio ("../audio/fairy-dust.mp3");
+ let sweet = new Audio("../audio/sweet.wav");
+ let divine = new Audio("../audio/divine.wav");
+ let invalid= new Audio("../audio/invalid.mp3");
+
 
 window.onload = function () {
   showFrontPage();
@@ -35,7 +39,7 @@ function startGame() {
     for (let c = 0; c < columns; c++) {
       let tile = document.createElement("img");
       tile.id = r.toString() + "-" + c.toString(); //makes each candy a matrix component
-      tile.src = "./images/" + randomCandy() + ".png";
+      tile.src = "images/" + randomCandy() + ".png";
 
       //event listeners for the game
       tile.addEventListener("dragstart", dragStart); // for when dragging process is started

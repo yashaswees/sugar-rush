@@ -11,7 +11,7 @@
     <div id="frontPage">
       <img
         id="frontPageImage"
-        src="../images/start-background.png"
+        src="images/start-background.png"
         alt="Front Page Image"
       />
       <div id="startButton">Start Game</div>
@@ -20,7 +20,7 @@
       <div id="game-container">
         <div class="left-container">
           <h2>Score: <span id="score">0</span></h2>
-          <h2>Moves:<span id="moves"> 20</span></h2>
+          <h2>Moves: <span id="moves"> 20</span></h2>
           <h2>Level:<span id="level"> 0</span></h2>
         </div>
         <audio id="swap"></audio>
@@ -28,8 +28,11 @@
         <audio id="delicious"></audio>
         <audio id="divine"></audio>
         <audio id="sweet"></audio>
-        <sudio id="tasty"></sudio>
-        <div class="right-container">
+        <audio id="tasty"></audio>
+         
+        <div class="right-container"> 
+          <img src ="images/game-over.png"  class= "gameOverImg" alt="Game Over">
+          <h2 class="tryButton">Try Again</h2>
           <h1>Sugar Rush</h1>
           <div id="board"></div>
         </div>
@@ -41,13 +44,14 @@
         <script src="./JS/slideCandy.js"></script>
         <script src="./JS/crushThree.js"></script>
         <script src="./JS/frontPage.js"></script>
-        <img id="sweetImg" src="../images/sweet.png" alt="sweetImg" />
+        <script src="./JS/gameOver.js"></script>
+        <img id="sweetImg" src="images/sweet.png" alt="sweetImg" />
         <img
           class="textImg delicious"
-          src="../images/delicious.png"
+          src="images/delicious.png"
           alt="deliciousImg"
         />
-        <img class="textImg tasty" src="../images/tasty.png" alt="tastyImg" />
+        <img class="textImg tasty" src="images/tasty.png" alt="tastyImg" />
       </div>
     </div>
   </body>

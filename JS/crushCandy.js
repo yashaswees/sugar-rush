@@ -14,8 +14,8 @@ function crushTwo() {
       if (candy1.src.includes("Striped") && candy2.src.includes("Striped")) {
         for (let i = 0; i < columns; i++) {
           console.log(" powerup crusing 2 whole rows");
-          board[i][c].src = "../images/blank.png";
-          board[i][c + 1].src = "../images/blank.png";
+          board[i][c].src = "images/blank.png";
+          board[i][c + 1].src = "images/blank.png";
           let tastyImg = document.querySelector(".delicious");
           setTimeout(function () {
             tastyImg.style.display = "block";
@@ -37,8 +37,8 @@ function crushTwo() {
       if (candy1.src.includes("Striped") && candy2.src.includes("Striped")) {
         for (let i = 0; i < rows; i++) {
           console.log("powerup crushing whole 2 columns");
-          board[r][i].src = "../images/blank.png";
-          board[r + 1][i].src = "../images/blank.png";
+          board[r][i].src = "images/blank.png";
+          board[r + 1][i].src = "images/blank.png";
           console.log("striped combination column");
           let sweetImg = document.getElementById("sweetImg");
           setTimeout(function () {
@@ -57,9 +57,9 @@ function crushTwo() {
 }
 
 function crushFive() {
-  var sounds = ["delicious", "tasty"];
-  var randomIndex = Math.floor(Math.random() * sounds.length);
-  var selectedSound = sounds[randomIndex];
+  let sounds = ["delicious", "tasty"];
+  let randomIndex = Math.floor(Math.random() * sounds.length);
+  let selectedSound = sounds[randomIndex];
   //checking each row
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns - 4; c++) {
@@ -76,11 +76,11 @@ function crushFive() {
         !candy1.src.includes("blank")
       ) {
         console.log("at crush Five");
-        candy1.src = "../images/blank.png";
-        candy2.src = "../images/blank.png";
-        candy5.src = "../images/blank.png";
-        candy4.src = "../images/blank.png";
-        candy3.src = "../images/Choco.png";
+        candy1.src = "images/blank.png";
+        candy2.src = "images/blank.png";
+        candy5.src = "images/blank.png";
+        candy4.src = "images/blank.png";
+        candy3.src = "images/Choco.png";
         let audio = new Audio(`audio/${selectedSound}.wav`);
         audio.play();
         score += 50;
@@ -103,11 +103,11 @@ function crushFive() {
         !candy1.src.includes("blank")
       ) {
         console.log("at crush Five");
-        candy1.src = "../images/blank.png";
-        candy2.src = "../images/blank.png";
-        candy5.src = "../images/blank.png";
-        candy4.src = "../images/blank.png";
-        candy3.src = "../images/Choco.png";
+        candy1.src = "images/blank.png";
+        candy2.src = "images/blank.png";
+        candy5.src = "images/blank.png";
+        candy4.src = "images/blank.png";
+        candy3.src = "images/Choco.png";
         score += 50;
         let audio = new Audio(`audio/${selectedSound}.wav`);
         audio.play();
@@ -142,9 +142,9 @@ function crushFour() {
           let candy = board[r][c + i];
           if (!candy.src.includes("blank")) {
             if (i < 3) {
-              candy.src = "../images/blank.png";
+              candy.src = "images/blank.png";
             } else {
-              candy.src = `../images/${color}-Striped.png`;
+              candy.src = `images/${color}-Striped.png`;
             }
             score += 40;
           }
@@ -183,9 +183,9 @@ function crushFour() {
           let candy = board[r + i][c];
           if (!candy.src.includes("blank")) {
             if (i < 3) {
-              candy.src = "../images/blank.png";
+              candy.src = "images/blank.png";
             } else {
-              candy.src = `../images/${color}-Striped.png`;
+              candy.src = `images/${color}-Striped.png`;
             }
             score += 40;
           }

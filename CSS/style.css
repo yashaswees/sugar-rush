@@ -67,6 +67,15 @@ body {
   margin-top: 100px;
   margin-right: 50px;
   line-height: 2;
+  animation: slideTopDown 1s;
+}
+@keyframes slideTopDown {
+  from {
+    transform: translateY(-100px);
+  }
+  to {
+    transform: translateY(0px);
+  }
 }
 .left-container h2{
   padding: 5px 30px;
@@ -78,6 +87,17 @@ body {
 }
 .left-container h2:hover{
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.right-container{
+  animation: slideLeftRight 2s;
+}
+@keyframes slideLeftRight {
+  from {
+    transform: translatex(500px);
+  }
+  to {
+    transform: translatex(0px);
+  }
 }
 #sweetImg{
   position: absolute;

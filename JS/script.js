@@ -28,12 +28,17 @@ function start() {
   console.log("at start");
   // playMusicLoop(); 
   // Start the game loop
-  startGame();
-  window.setInterval(function () {
-    crushCandy();
-    setTimeout(function(){slideCandy()}, 300)
-    generateCandy();
-  }, 200);
+  setTimeout(function() {
+    // Start the game loop
+    startGame();
+    window.setInterval(function() {
+      crushCandy();
+      setTimeout(function() {
+        slideCandy();
+      }, 300);
+      generateCandy();
+    }, 200);
+  }, 2000); // 2-second delay
   if (gameRunning == false){
     return;
   }

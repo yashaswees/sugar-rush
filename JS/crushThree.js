@@ -66,6 +66,9 @@ function crushThreeRow() {
         }
       }
     }
+    if (gameRunning == false){
+      return;
+    }
   }
   
   function crushThreeColumn() {
@@ -121,5 +124,8 @@ function crushThreeRow() {
           score += 30;
         }
       }
+    }
+    if (gameRunning == false){
+      return;
     }
   }

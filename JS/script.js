@@ -13,12 +13,15 @@ let sweet = new Audio("audio/sweet.wav");
 let divine = new Audio("audio/divine.wav");
 let invalid= new Audio("audio/invalid.mp3");
 let gameOverMusic = new Audio("audio/game-over.mp3")
+let gameRunning = true;
 
 window.onload = function () {
   showFrontPage();
 };
 
 function start() {
+  document.querySelector(".gameOverImg").style.display = "none";
+  document.querySelector(".tryButton").style.display = "none";
   document.getElementById("frontPage").style.display = "none";
   let container = document.querySelector(".container");
   container.style.display = "block";
@@ -31,6 +34,9 @@ function start() {
     setTimeout(function(){slideCandy()}, 300)
     generateCandy();
   }, 200);
+  if (gameRunning == false){
+    return;
+  }
 }
 
 function startGame() {

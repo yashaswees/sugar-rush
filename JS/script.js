@@ -3,16 +3,16 @@ let board = [];
 let rows = 9;
 let columns = 9;
 let score = 0;
-let moves = 20;
+let moves = 5;
 let currTile;
 let nextTile;
- let drop= new Audio("../audio/drop.wav");
- let delicious = new Audio("../audio/delicious.wav");
- let fairyDust = new Audio ("../audio/fairy-dust.mp3");
- let sweet = new Audio("../audio/sweet.wav");
- let divine = new Audio("../audio/divine.wav");
- let invalid= new Audio("../audio/invalid.mp3");
-
+let drop= new Audio("audio/drop.wav");
+let delicious = new Audio("audio/delicious.wav");
+let fairyDust = new Audio ("audio/fairy-dust.mp3");
+let sweet = new Audio("audio/sweet.wav");
+let divine = new Audio("audio/divine.wav");
+let invalid= new Audio("audio/invalid.mp3");
+let gameOverMusic = new Audio("audio/game-over.mp3")
 
 window.onload = function () {
   showFrontPage();
@@ -122,7 +122,7 @@ function dragEnd() {
 
 function playMusicLoop() {
   // Create an Audio object with the path to your music file
-  const audio = new Audio("../audio/Theme-music.mp3");
+  const audio = new Audio("audio/Theme-music.mp3");
 
   // Set the loop property to true to play the music in a loop
   audio.loop = true;

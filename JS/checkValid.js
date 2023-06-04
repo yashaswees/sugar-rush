@@ -26,7 +26,7 @@ function checkValid() {
         moves -= 1;
         document.getElementById("moves").innerText = moves;
         if (moves == 0) {
-          console.log("gameover ");
+          gameOver();
         }
         return true;
       }
@@ -59,7 +59,7 @@ function checkValid() {
         moves -= 1;
         document.getElementById("moves").innerText = moves;
         if (moves == 0) {
-          console.log("gameover ");
+          gameOver();
         }
         return true;
       }
@@ -67,5 +67,5 @@ function checkValid() {
   }
   console.log("invalid move");
   invalid.play();
-  return false;
+  return true;
 }

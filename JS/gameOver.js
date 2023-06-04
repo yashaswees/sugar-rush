@@ -1,4 +1,5 @@
 function gameOver(){
-    display gameover image,
-    try again.again
+    document.querySelector(".gameOverImg").style.display = "block";
+    document.querySelector(".tryButton").style.display = "block";
+    gameOverMusic.play();
 }

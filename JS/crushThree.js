@@ -42,7 +42,6 @@ function crushThreeRow() {
           candy1.src = "images/blank.png";
           candy2.src = "images/blank.png";
           candy3.src = "images/blank.png"; 
-          console.log("playing drop at row");
           drop.play();
           if (striped == true) {
             for (let i = 0; i < columns; i++) {

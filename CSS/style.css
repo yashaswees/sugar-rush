@@ -114,6 +114,52 @@ body {
   color:darkmagenta;
   background-color: rgba(245, 67, 204, 0.571);
 }
+
+
+.tryButton{
+  position:absolute;
+  padding: 10px 40px;
+  border-radius: 40px;
+  border: 3px solid rgb(179, 54, 102);
+  background: linear-gradient(to bottom, rgb(228, 47, 116), rgb(246, 141, 181));
+  transform: translate(180%, 690%);
+  z-index:3;
+  display: none;
+  animation: fade 2s;
+}
+@keyframes fade {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+  
+}
+
+.tryButton:hover{
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+.gameOverImg{
+  position: absolute;
+  height:470px;
+  top: 15%;
+  left:42%;
+  z-index:2;
+  animation: slideUp 2s;
+  display: none;
+}
+@keyframes slideUp {
+  from{
+    transform: translateY(200px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+  
+}
 .textImg{
   display:none;
   position: absolute;
@@ -123,33 +169,12 @@ body {
   margin-left:250px;
   margin-top: 100px;
 }
-.gameOverImg{
-  position:absolute;
-  height:100px;
-  width:400px;
-  transform: translate(-50%,265%);
-  z-index:2;
-}
-.tryButton{
-  position:absolute;
-  padding: 3px 30px;
-  border-radius: 40px;
-  border: 3px solid rgb(179, 54, 102);
-  background: linear-gradient(to bottom, rgb(228, 47, 116), rgb(246, 141, 181));
-  transform: translate(140%, 750%);
-  z-index:3;
-}
-.tryButton:hover{
-  cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease;
-}
 @keyframes slideBottomUp {
   from{
-    transform: translateY(100px);
+    transform: translateY(40px);
   }
   to {
-    transform: translateY(50px);
+    transform: translateY(0px);
   }
 }
 

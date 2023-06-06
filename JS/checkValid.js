@@ -1,6 +1,7 @@
 function checkValid() {
   // check rows
   document.getElementById("moves").innerText = moves;
+
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns - 2; c++) {
       let candy1 = board[r][c];
@@ -26,7 +27,11 @@ function checkValid() {
         moves -= 1;
         document.getElementById("moves").innerText = moves;
         if (moves == 0) {
-          gameOver();
+          console.log(score);
+          console.log(goal);
+          setTimeout(function (){
+            gameOver();
+          }, 2000)
         }
         return true;
       }
@@ -58,7 +63,9 @@ function checkValid() {
         swap.play();
         moves -= 1;
         document.getElementById("moves").innerText = moves;
-        if (moves == 0) {
+        if (moves == 0)  {
+          console.log(score);
+          console.log(goal);
           gameOver();
         }
         return true;

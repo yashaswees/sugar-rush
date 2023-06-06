@@ -3,43 +3,76 @@ let board = [];
 let rows = 9;
 let columns = 9;
 let score = 0;
-let moves = 5;
+let moves = 40;
 let currTile;
 let nextTile;
-let drop= new Audio("audio/drop.wav");
+let goal = 0;
+let drop = new Audio("audio/drop.wav");
 let delicious = new Audio("audio/delicious.wav");
-let fairyDust = new Audio ("audio/fairy-dust.mp3");
+let fairyDust = new Audio("audio/fairy-dust.mp3");
 let sweet = new Audio("audio/sweet.wav");
 let divine = new Audio("audio/divine.wav");
-let invalid= new Audio("audio/invalid.mp3");
-let gameOverMusic = new Audio("audio/game-over.mp3")
+let invalid = new Audio("audio/invalid.mp3");
+let gameOverMusic = new Audio("audio/level-failed.mp3");
 let gameRunning = true;
+let shotMusic= new Audio("audio/shot.mp3")
+let audio = new Audio("audio/Theme-music.mp3");
+let sugarCrushAudio = new Audio("audio/sugar-crush.mp3");
+const easyButton = document.querySelector(".options.easy");
+const mediumButton = document.querySelector(".options.medium");
+const hardButton = document.querySelector(".options.hard");
+
+
+// Add event listeners to the buttons
+easyButton.addEventListener("click", function () {
+  console.log("easy");
+  start(20, 2000); // Pass the moves and goal as parameters
+});
+
+mediumButton.addEventListener("click", function () {
+  console.log("med");
+  start(20, 3000);
+});
+
+hardButton.addEventListener("click", function () {
+  console.log("hard");
+  start(15, 4000);
+});
 
 window.onload = function () {
   showFrontPage();
 };
 
-function start() {
+let homeButton = document.querySelector(".home");
+homeButton.addEventListener("click", function() {
+  location.reload();
+});
+
+function start(move, goalValue) {
+  moves = move;
+  goal = goalValue;
+  document.getElementById("moves").innerText = moves;
+  document.getElementById("goal").innerText = goal;
   document.querySelector(".gameOverImg").style.display = "none";
   document.querySelector(".tryButton").style.display = "none";
   document.getElementById("frontPage").style.display = "none";
   let container = document.querySelector(".container");
   container.style.display = "block";
-  console.log("at start");
-  // playMusicLoop(); 
+  // playMusicLoop();
   // Start the game loop
-  setTimeout(function() {
+  setTimeout(function () {
     // Start the game loop
     startGame();
-    window.setInterval(function() {
+    window.setInterval(function () {
       crushCandy();
-      setTimeout(function() {
+      checkStatus();
+      setTimeout(function () {
         slideCandy();
       }, 300);
       generateCandy();
     }, 200);
   }, 2000); // 2-second delay
-  if (gameRunning == false){
+  if (!gameRunning) {
     return;
   }
 }
@@ -116,15 +149,38 @@ function dragEnd() {
   if (isAdjacent) {
     let currImg = currTile.src;
     let nextImg = nextTile.src;
+
     currTile.src = nextImg;
     nextTile.src = currImg;
+    if (nextTile.src.includes("Choco")) {
+      console.log("chocopowerup!!");
+      nextTile.src = "images/blank.png";
+      var candyColor = currTile.src.split("/").pop().split("-")[0];
+      if (candyColor.includes(".png")) {
+        candyColor = candyColor.slice(0, -4); // Remove the file extension
+      }
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+          if (board[r][c].src.includes(candyColor)) {
+            board[r][c].src = "images/blank.png";
+          }
+        }
+      }
+      let sugarCrushImg = document.querySelector(".sugarCrush");
+      setTimeout(function () {
+        sugarCrushImg.style.display = "block";
+        setTimeout(function () {
+          sugarCrushImg.style.display = "none";
+        }, 1000); // Display for 1 second
+      }, 100);
+      sugarCrushAudio.play();
+      score += 100;
+    }
     let validMove = checkValid();
     if (!validMove) {
-      // makes sure that only those moves are valid that make a combination
-      // const swapSound= new Audio('../audio/swap.wav');
-      // swapSound.play();
       let currImg = currTile.src;
       let nextImg = nextTile.src;
+
       currTile.src = nextImg;
       nextTile.src = currImg;
     }
@@ -132,12 +188,18 @@ function dragEnd() {
 }
 
 function playMusicLoop() {
-  // Create an Audio object with the path to your music file
-  const audio = new Audio("audio/Theme-music.mp3");
-
   // Set the loop property to true to play the music in a loop
   audio.loop = true;
-
   // Play the music
   audio.play();
+}
+
+function checkStatus() {
+  document.getElementById("score").innerText = score;
+  if (score > goal) {
+    console.log("congratulations");
+    document.querySelector(".levelcomplete").style.display = "block";
+    document.querySelector(".nextLevel").style.display = "block";
+    audio.pause();
+  }
 }

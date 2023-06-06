@@ -88,6 +88,16 @@ body {
 .left-container h2:hover{
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
 }
+.home{
+  margin-top:20px;
+  width:50px;
+  border-radius: 20px;
+}
+.home:hover{
+  box-shadow:  0px 1px 3px rgba(0, 0, 0, 0.5); 
+  cursor:pointer;
+  transform:translateY(-1px);
+}
 .right-container{
   animation: slideLeftRight 2s;
 }
@@ -119,7 +129,7 @@ body {
   height: 100%;
   object-fit: cover;
 }
-#startButton {
+.startButton {
   position: absolute;
   top:50%;
   left:45%;
@@ -127,15 +137,45 @@ body {
   background-color:darkmagenta;
   padding: 15px 30px;
   border-radius: 20px;
+  transition: left 1s;
+  width:200px;
 }
-#startButton:hover{
-  cursor:pointer;
+.startButton:hover,
+.options:hover {
+  cursor: pointer;
   transform: translateY(-1px);
-  color:darkmagenta;
+  color: darkmagenta;
   background-color: rgba(245, 67, 204, 0.571);
 }
 
-
+.tutorial{
+  top:60%;
+  transition: left 1s;
+}
+.options {
+  position: absolute;
+  font-family: 'Playball', cursive;
+  color: white;
+  border: none;
+  top:50%;
+  left:100%;
+  font-size: 24px;
+  background-color:darkmagenta;
+  padding: 15px 30px;
+  border-radius: 20px;
+  transition: left 1s;
+  width:200px;
+  /* display: none; */
+}
+.easy{
+  top:50%
+}
+.medium{
+  top:60%;
+}
+.hard{
+  top:70%;
+}
 .tryButton{
   position:absolute;
   padding: 10px 40px;
@@ -178,7 +218,6 @@ body {
   to {
     transform: translateY(0px);
   }
-  
 }
 .textImg{
   display:none;
@@ -197,5 +236,27 @@ body {
     transform: translateY(0px);
   }
 }
-
-
+.nextLevel{
+  position: absolute;
+  top: 74%;
+  left:65%;
+  z-index: 4;
+  color:darkmagenta;
+  animation: fade 2s;
+  display:none;
+}
+.nextLevel:hover{
+  transform: translateY(-1px);
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+.divineImg{
+  display:none;
+  position: absolute;
+  width:400px;
+  height:170px;
+  animation: slideBottomUp 1s ;
+  margin-left:250px;
+  margin-top: 100px;
+}

@@ -4,6 +4,9 @@ function crushCandy() {
   crushFour();
   crushThree();
   document.getElementById("score").innerText = score;
+  if (!gameRunning){
+  return;
+  }
 }
 function crushTwo() {
   // when two striped combination is made in row
@@ -127,7 +130,6 @@ function crushFour() {
 
         var candyColor = candy.src.split("/").pop().split("-")[0];
         candyColor = candyColor.slice(0, -4); // Remove the file extension
-        // console.log(candyColor);
         if (i === 0) {
           color = candyColor;
         } else if (candyColor !== color) {

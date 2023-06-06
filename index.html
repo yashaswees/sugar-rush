@@ -9,19 +9,20 @@
   </head>
   <body>
     <div id="frontPage">
-      <img
-        id="frontPageImage"
-        src="images/start-background.png"
-        alt="Front Page Image"
-      />
-      <div id="startButton">Start Game</div>
+      <img id="frontPageImage" src="images/start-background.png" alt="Front Page Image" />
+      <div class="startButton">Start Game</div>
+      <div class ="startButton tutorial"> How to Play</div>
+        <button class="options easy">Easy</button>
+        <button class="options medium">Medium</button>
+        <button class="options hard">Hard</button>
     </div>
     <div class="container">
       <div id="game-container">
         <div class="left-container">
           <h2>Score: <span id="score">0</span></h2>
           <h2>Moves: <span id="moves"> 20</span></h2>
-          <h2>Level:<span id="level"> 0</span></h2>
+          <h2>Goal: <span id="goal"> 2000</span></h2>
+          <img src="images/home.png" class="home" alt="home">
         </div>
         <audio id="swap"></audio>
         <audio id="drop"></audio>
@@ -29,10 +30,13 @@
         <audio id="divine"></audio>
         <audio id="sweet"></audio>
         <audio id="tasty"></audio>
-         
-        <div class="right-container"> 
-          <img src ="images/game-over.png"  class= "gameOverImg" alt="Game Over">
+
+        <div class="right-container">
+          <img src="images/game-over.png" class="gameOverImg" alt="Game Over" />
+          <img src ="images/level-complete.png" class="gameOverImg levelcomplete" alt="Level Completed" />
+          <img src ="images/victory.png" class="gameOverImg victory" alt="victory"/>
           <h2 class="tryButton">Try Again</h2>
+          <h2 class=" nextLevel">Next Level</h2>
           <h1>Sugar Rush</h1>
           <div id="board"></div>
         </div>
@@ -46,7 +50,13 @@
         <script src="./JS/frontPage.js"></script>
         <script src="./JS/gameOver.js"></script>
         <img id="sweetImg" src="images/Sweet.png" alt="sweetImg" />
-        <img class="textImg delicious" src="images/Delicious.png" alt="deliciousImg"/>
+        <img class="divineImg" src="images/Divine.png" alt="divineImg" />
+        <img
+          class="textImg delicious"
+          src="images/Delicious.png"
+          alt="deliciousImg"
+        />
+        <img class="textImg sugarCrush" src="images/sugar-crush.png" alt="Sugar Crush" />
         <img class="textImg tasty" src="images/tasty.png" alt="tastyImg" />
       </div>
     </div>

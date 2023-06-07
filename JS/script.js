@@ -7,6 +7,7 @@ let moves = 40;
 let currTile;
 let nextTile;
 let goal = 0;
+let level = 0;
 let drop = new Audio("audio/drop.wav");
 let delicious = new Audio("audio/delicious.wav");
 let fairyDust = new Audio("audio/fairy-dust.mp3");
@@ -14,29 +15,42 @@ let sweet = new Audio("audio/sweet.wav");
 let divine = new Audio("audio/divine.wav");
 let invalid = new Audio("audio/invalid.mp3");
 let gameOverMusic = new Audio("audio/level-failed.mp3");
+let lvlComplete = new Audio("audio/level-complete.mp3");
+let lvlCompleted = new Audio("audio/level-completed.mp3");
+let choco = new Audio("audio/choco.mp3");
+let chocoPopped = new Audio("audio/chocoPopped.mp3");
 let gameRunning = true;
-let shotMusic= new Audio("audio/shot.mp3")
+let cont = false;
+let shotMusic = new Audio("audio/shot.mp3");
 let audio = new Audio("audio/Theme-music.mp3");
 let sugarCrushAudio = new Audio("audio/sugar-crush.mp3");
 const easyButton = document.querySelector(".options.easy");
 const mediumButton = document.querySelector(".options.medium");
 const hardButton = document.querySelector(".options.hard");
-
+const tutorialButton = document.querySelector(".tutorial");
+const XButton = document.querySelector(".X");
 
 // Add event listeners to the buttons
+tutorialButton.addEventListener("click", function () {
+  document.querySelector(".tutorialImg").style.display = "block";
+  XButton.style.display = "block";
+});
+
+XButton.addEventListener("click", function () {
+  document.querySelector(".tutorialImg").style.display = "none";
+  XButton.style.display = "none";
+});
+
 easyButton.addEventListener("click", function () {
-  console.log("easy");
-  start(20, 2000); // Pass the moves and goal as parameters
+  start(1); // Pass the moves and goal as parameters
 });
 
 mediumButton.addEventListener("click", function () {
-  console.log("med");
-  start(20, 3000);
+  start(2);
 });
 
 hardButton.addEventListener("click", function () {
-  console.log("hard");
-  start(15, 4000);
+  start(3);
 });
 
 window.onload = function () {
@@ -44,13 +58,23 @@ window.onload = function () {
 };
 
 let homeButton = document.querySelector(".home");
-homeButton.addEventListener("click", function() {
+homeButton.addEventListener("click", function () {
   location.reload();
 });
 
-function start(move, goalValue) {
-  moves = move;
-  goal = goalValue;
+function start(lvl) {
+  level = lvl;
+  score = 0;
+  if (level == 1) {
+    moves = 20;
+    goal = 2000;
+  } else if (level == 2) {
+    moves = 20;
+    goal = 3000;
+  } else if (level == 3) {
+    moves = 15;
+    goal = 3000;
+  }
   document.getElementById("moves").innerText = moves;
   document.getElementById("goal").innerText = goal;
   document.querySelector(".gameOverImg").style.display = "none";
@@ -58,14 +82,16 @@ function start(move, goalValue) {
   document.getElementById("frontPage").style.display = "none";
   let container = document.querySelector(".container");
   container.style.display = "block";
-  // playMusicLoop();
+  playMusicLoop();
   // Start the game loop
   setTimeout(function () {
     // Start the game loop
-    startGame();
+    if (!cont) {
+      startGame();
+    }
     window.setInterval(function () {
       crushCandy();
-      checkStatus();
+      checkStatus(); //to check if gameover should be called
       setTimeout(function () {
         slideCandy();
       }, 300);
@@ -84,7 +110,6 @@ function startGame() {
       let tile = document.createElement("img");
       tile.id = r.toString() + "-" + c.toString(); //makes each candy a matrix component
       tile.src = "images/" + randomCandy() + ".png";
-
       //event listeners for the game
       tile.addEventListener("dragstart", dragStart); // for when dragging process is started
       tile.addEventListener("dragover", dragOver); // for when moving cursor to drag the candy
@@ -104,7 +129,6 @@ function randomCandy() {
 }
 
 function dragStart() {
-  console.log("at dragStart");
   currTile = this;
 }
 
@@ -124,11 +148,9 @@ function dragDrop() {
 function dragEnd() {
   if (currTile.src.includes("blank") || nextTile.src.includes("blank")) {
     // cannot swap with blank
-    console.log("at drop");
 
     return;
   }
-  console.log("at dragEnd");
   //check for adjacent candies
   let currCoords = currTile.id.split("-");
   let r = parseInt(currCoords[0]);
@@ -153,9 +175,10 @@ function dragEnd() {
     currTile.src = nextImg;
     nextTile.src = currImg;
     if (nextTile.src.includes("Choco")) {
-      console.log("chocopowerup!!");
+      let count = 0;
+      moves--;
       nextTile.src = "images/blank.png";
-      var candyColor = currTile.src.split("/").pop().split("-")[0];
+      let candyColor = currTile.src.split("/").pop().split("-")[0];
       if (candyColor.includes(".png")) {
         candyColor = candyColor.slice(0, -4); // Remove the file extension
       }
@@ -163,6 +186,7 @@ function dragEnd() {
         for (let c = 0; c < columns; c++) {
           if (board[r][c].src.includes(candyColor)) {
             board[r][c].src = "images/blank.png";
+            count++;
           }
         }
       }
@@ -173,8 +197,10 @@ function dragEnd() {
           sugarCrushImg.style.display = "none";
         }, 1000); // Display for 1 second
       }, 100);
+      chocoPopped.play();
       sugarCrushAudio.play();
-      score += 100;
+      score += count * 10;
+      document.getElementById("score").innerText = score;
     }
     let validMove = checkValid();
     if (!validMove) {
@@ -196,10 +222,26 @@ function playMusicLoop() {
 
 function checkStatus() {
   document.getElementById("score").innerText = score;
+
   if (score > goal) {
-    console.log("congratulations");
-    document.querySelector(".levelcomplete").style.display = "block";
-    document.querySelector(".nextLevel").style.display = "block";
+    if (level < 3) {
+      document.querySelector(".levelcomplete").style.display = "block";
+      document.querySelector(".nextLevel").style.display = "block";
+      const nextButton = document.querySelector(".nextLevel");
+      nextButton.addEventListener("click", function () {
+        cont = true;
+        let nxt = level + 1;
+        document.querySelector(".levelcomplete").style.display = "none";
+        document.querySelector(".nextLevel").style.display = "none";
+        start(nxt);
+      });
+      lvlComplete.play();
+    } else if (level == 3) {
+      document.querySelector(".victory").style.display = "block";
+      lvlCompleted.play();
+    }
+
     audio.pause();
+    score = goal;
   }
 }

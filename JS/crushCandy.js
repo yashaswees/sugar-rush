@@ -4,8 +4,8 @@ function crushCandy() {
   crushFour();
   crushThree();
   document.getElementById("score").innerText = score;
-  if (!gameRunning){
-  return;
+  if (!gameRunning) {
+    return;
   }
 }
 function crushTwo() {
@@ -16,7 +16,6 @@ function crushTwo() {
       let candy2 = board[r][c + 1];
       if (candy1.src.includes("Striped") && candy2.src.includes("Striped")) {
         for (let i = 0; i < columns; i++) {
-          console.log(" powerup crusing 2 whole rows");
           board[i][c].src = "images/blank.png";
           board[i][c + 1].src = "images/blank.png";
           let tastyImg = document.querySelector(".delicious");
@@ -39,10 +38,8 @@ function crushTwo() {
       let candy2 = board[r + 1][c];
       if (candy1.src.includes("Striped") && candy2.src.includes("Striped")) {
         for (let i = 0; i < rows; i++) {
-          console.log("powerup crushing whole 2 columns");
           board[r][i].src = "images/blank.png";
           board[r + 1][i].src = "images/blank.png";
-          console.log("striped combination column");
           let sweetImg = document.getElementById("sweetImg");
           setTimeout(function () {
             sweetImg.style.display = "block";
@@ -51,7 +48,6 @@ function crushTwo() {
             }, 1000); // Display for 1 second
           }, 100);
         }
-        console.log("playing sweet at 2 column combinaiton");
         sweet.play();
         score += 180;
       }
@@ -78,12 +74,12 @@ function crushFive() {
         candy4.src === candy5.src &&
         !candy1.src.includes("blank")
       ) {
-        console.log("at crush Five");
         candy1.src = "images/blank.png";
         candy2.src = "images/blank.png";
         candy5.src = "images/blank.png";
         candy4.src = "images/blank.png";
         candy3.src = "images/Choco.png";
+        choco.play();
         let audio = new Audio(`audio/${selectedSound}.wav`);
         audio.play();
         score += 50;
@@ -105,7 +101,6 @@ function crushFive() {
         candy4.src === candy5.src &&
         !candy1.src.includes("blank")
       ) {
-        console.log("at crush Five");
         candy1.src = "images/blank.png";
         candy2.src = "images/blank.png";
         candy5.src = "images/blank.png";

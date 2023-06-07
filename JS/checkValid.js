@@ -27,8 +27,6 @@ function checkValid() {
         moves -= 1;
         document.getElementById("moves").innerText = moves;
         if (moves == 0) {
-          console.log(score);
-          console.log(goal);
           setTimeout(function (){
             gameOver();
           }, 2000)
@@ -64,15 +62,12 @@ function checkValid() {
         moves -= 1;
         document.getElementById("moves").innerText = moves;
         if (moves == 0)  {
-          console.log(score);
-          console.log(goal);
           gameOver();
         }
         return true;
       }
     }
   }
-  console.log("invalid move");
   invalid.play();
-  return true;
+  return false;
 }

@@ -38,14 +38,12 @@ function crushThreeRow() {
         candyColor2 == candyColor3 &&
         !candy1.src.includes("blank")
       ) {
-        console.log("three crushed row");
         candy1.src = "images/blank.png";
         candy2.src = "images/blank.png";
         candy3.src = "images/blank.png";
         drop.play();
         if (striped == true) {
           for (let i = 0; i < columns; i++) {
-            console.log(" powerup crusing whole row");
             board[r][i].src = "images/blank.png";
             board[r][i].setAttribute("src", "images/blank.png");
             let sweetImg = document.getElementById("sweetImg");
@@ -104,15 +102,12 @@ function crushThreeColumn() {
         candyColor2 == candyColor3 &&
         !candy1.src.includes("blank")
       ) {
-        console.log("three crushed column");
         candy1.src = "images/blank.png";
         candy2.src = "images/blank.png";
         candy3.src = "images/blank.png";
-        console.log("playing drop at column");
         drop.play();
         if (striped == true) {
           for (let i = 0; i < rows; i++) {
-            console.log("powerup crushing whole column");
             board[i][c].src = "images/blank.png";
           }
           fairyDust.play();

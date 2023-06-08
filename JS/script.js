@@ -114,7 +114,6 @@ function startGame() {
       tile.addEventListener("dragstart", dragStart); // for when dragging process is started
       tile.addEventListener("dragover", dragOver); // for when moving cursor to drag the candy
       tile.addEventListener("dragenter", dragEnter); // dragging candy onto another candy
-      tile.addEventListener("dragleave", dragLeave); // leave another candy
       tile.addEventListener("drop", dragDrop); // dropping a candy over another candy
       tile.addEventListener("dragend", dragEnd); // letting go of previous candy
       document.getElementById("board").append(tile);
@@ -139,7 +138,6 @@ function dragOver(e) {
 function dragEnter(e) {
   e.preventDefault();
 }
-function dragLeave() {}
 
 function dragDrop() {
   nextTile = this;

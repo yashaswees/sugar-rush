@@ -83,7 +83,7 @@ function start(lvl) {
   let container = document.querySelector(".container");
   container.style.display = "block";
   playMusicLoop();
-  // Start the game loop
+  // Start the music loop
   setTimeout(function () {
     // Start the game loop
     if (!cont) {

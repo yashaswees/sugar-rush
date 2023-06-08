@@ -245,7 +245,12 @@ body {
   animation: fade 2s;
   display:none;
 }
-.nextLevel:hover,
+.nextLevel:hover{
+  transform: translateY(-1px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
 .X:hover{
   transform: translateY(-1px);
   cursor: pointer;
